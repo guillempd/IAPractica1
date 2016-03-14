@@ -18,7 +18,7 @@ public class Estat {
     private ArrayList <Integer> assignacio;
     private ArrayList <Integer> ocupacioServidor;
     
-    public Estat(Requests r) {
+    public Estat(Requests r, Servers s) {
         
     }
     
