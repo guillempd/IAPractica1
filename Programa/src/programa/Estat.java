@@ -45,9 +45,13 @@ public class Estat {
             Integer[] h = (Integer[]) set.toArray();
             int serv_triat = escullServidor(user,h,g);
             assignacio.add(h[serv_triat]); //li assignem al servidor
-            ocupacioServidor.set(serv_triat,s.tranmissionTime(serv_triat, user));
+            ocupacioServidor.set(serv_triat, incrementa(ocupacioServidor, serv_triat, s.tranmissionTime(serv_triat, user)));
             //actualitzem el temps del servidor
         }
+    }
+    
+    public Estat(Estat e){
+        //constructora per copia
     }
     
     private int escullServidor(int user, Integer[] h, Generacio g){
@@ -85,6 +89,22 @@ public class Estat {
         return ocupacioServidor;
     }
     
+    public Boolean es_igual(Estat e){
+        return false;
+    }
     
+    public void Operador (int request, int new_serv){
+        //si no es pot no modificar res
+        
+        
+        int old_serv = assignacio.get(request);
+        assignacio.set(request, new_serv);
+        
+        
+    }
+    
+    private int incrementa (ArrayList<Integer> l, int i, int suma){
+        return l.get(i) + suma;
+    }
     
 }
