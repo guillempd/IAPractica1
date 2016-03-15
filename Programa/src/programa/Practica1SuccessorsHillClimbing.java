@@ -25,7 +25,7 @@ public class Practica1SuccessorsHillClimbing implements SuccessorFunction {
     public ArrayList<Successor> getSuccessors(Object aState) {
         Estat e = (Estat)aState;
         ArrayList<Integer> assignacio = e.getAssignacio();
-        ArrayList ret = new ArrayList();
+        ArrayList<Successor> ret = new ArrayList();
         int R = r.size();
         for (int i = 0; i < R; ++i) {
             Set<Integer> setServers = s.fileLocations(r.getRequest(i)[1]);
@@ -35,9 +35,11 @@ public class Practica1SuccessorsHillClimbing implements SuccessorFunction {
                 if (server != assignacio.get(i)) {
                     Estat nouEstatDEuropa = new Estat(e);
                     nouEstatDEuropa.Operador(i, server);
+                    ret.add(new Successor("El request " + i + " ara s'envia des del servidor " + server + "\n", nouEstatDEuropa));
                 }
             }
         }
+        return ret;
     }
     
 }
