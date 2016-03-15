@@ -17,7 +17,7 @@ import java.util.Set;
 
 public class Estat {
     
-    private ArrayList <Integer> assignacio;
+    private ArrayList <Integer> assignacio; //assignacio[i] = servidor
     private ArrayList <Integer> ocupacioServidor;
     private final int R;
     private final int S;
@@ -25,13 +25,35 @@ public class Estat {
     public Estat(Requests r, Servers s) {
         R = r.size();
         S = s.size();
-        for (int i = 0; i < R; ++i) {
+        
+        for (int i = 0; i < S; i++){
+            ocupacioServidor.add(0);
+        }
+        //per cada request, li assignem un servidor random que contingui el fitxer
+        for (int i = 0; i < R; ++i) { 
+            
             int file = r.getRequest(i)[1];
-            Set<Integer> set = s.fileLocations(file);
+            int user = r.getRequest(i)[0];
+            Set<Integer> set = s.fileLocations(file); //conte enters amb els
+            //id dels servidors que contenen el fitxer de la request
+            
             Integer[] h = (Integer[]) set.toArray();
             Random rand = new Random(System.currentTimeMillis());
-            assignacio.add(h[rand.nextInt(h.length)]);
+            int serv_triat = rand.nextInt(h.length);//triem un servidor aleatori
+            assignacio.add(h[serv_triat]); //li assignem al servidor
+            ocupacioServidor.set(serv_triat,s.tranmissionTime(serv_triat, user));
+            //actualitzem el temps del servidor
         }
     }
+    
+    public ArrayList<Integer> getAssignacio(){
+        return assignacio;
+    }
+    
+    public ArrayList<Integer> getOcupacioServidor(){
+        return ocupacioServidor;
+    }
+    
+    
     
 }
