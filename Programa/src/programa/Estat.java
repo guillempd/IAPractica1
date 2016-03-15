@@ -49,10 +49,10 @@ public class Estat {
             //actualitzem el temps del servidor
         }
     }
-    
+    /*
     public Estat(Estat e){
         //constructora per copia
-    }
+    }*/
     
     private int escullServidor(int user, Integer[] h, Generacio g){
         if (g == Generacio.RANDOM){
