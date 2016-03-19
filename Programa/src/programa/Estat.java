@@ -58,8 +58,8 @@ public class Estat {
     public Estat(Estat e){
         this.R = e.R;
         this.S = e.S;
-        this.assignacio = e.assignacio;
-        this.ocupacioServidor = e.ocupacioServidor;
+        this.assignacio = new ArrayList<>(e.assignacio);
+        this.ocupacioServidor = new ArrayList<>(e.ocupacioServidor);
         this.r = e.r;
         this.s = e.s;
     }
