@@ -15,7 +15,7 @@ import java.util.Set;
 
 /**
  *
- * @author guillem.perez.delgado
+ * @author david.folque
  */
 public class Practica1SuccessorsHillClimbing implements SuccessorFunction {
     
@@ -28,7 +28,8 @@ public class Practica1SuccessorsHillClimbing implements SuccessorFunction {
         ArrayList<Successor> ret = new ArrayList();
         int R = r.size();
         for (int i = 0; i < R; ++i) {
-            Set<Integer> setServers = s.fileLocations(r.getRequest(i)[1]);
+            int fileID = r.getRequest(i)[1];
+            Set<Integer> setServers = s.fileLocations(fileID);
             Iterator<Integer> it = setServers.iterator();
             while (it.hasNext()) {
                 int server = it.next();
@@ -43,21 +44,3 @@ public class Practica1SuccessorsHillClimbing implements SuccessorFunction {
     }
     
 }
-
-
-/*
-package programa;
-
-import aima.search.framework.Successor;
-import aima.search.framework.SuccessorFunction;
-
-public class Practica1SuccessorsHillClimbing implements SuccessorFunction {
-    
-    public List getSuccessors(Object aState) {
-        Estat e = (Estat)aState;
-        ArrayList ret = new ArrayList();
-        int R = e.getAssignacio().size();
-    }
-    
-}
-*/
