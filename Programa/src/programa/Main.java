@@ -8,6 +8,7 @@ package programa;
 import IA.DistFS.Requests;
 import IA.DistFS.Servers;
 import aima.search.framework.GoalTest;
+import aima.search.framework.HeuristicFunction;
 import aima.search.framework.Problem;
 import aima.search.framework.Search;
 import aima.search.framework.SearchAgent;
@@ -28,10 +29,10 @@ public class Main {
     public static void main(String[] args) {
         // TODO code application logic here
         try {
-            Requests r = new Requests(5,5,10);
-            Servers s = new Servers(15,3,10);
+            Requests r = new Requests(200,5,10);
+            Servers s = new Servers(10,5,10);
             Estat estatInicial = new Estat(r,s,Generacio.LLUNYA);
-            Practica1HeuristicFunctionSuma heuristicFunction = new Practica1HeuristicFunctionSuma();
+            HeuristicFunction heuristicFunction = new Practica1HeuristicFunctionSuma();
             Practica1SuccessorsHillClimbing successorFunction = new Practica1SuccessorsHillClimbing(r,s,heuristicFunction);
             GoalTest gt = new GoalTest(){
                 @Override
@@ -40,7 +41,7 @@ public class Main {
                 }
             };
             
-            estatInicial.print();
+            //estatInicial.print();
             System.out.print("\nHeuristic = " + heuristicFunction.getHeuristicValue(estatInicial) + "\n");
             
             
