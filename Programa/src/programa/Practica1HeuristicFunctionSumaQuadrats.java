@@ -14,6 +14,7 @@ import java.util.ArrayList;
  */
 public class Practica1HeuristicFunctionSumaQuadrats implements HeuristicFunction {
     
+    @Override
     public double getHeuristicValue(Object n) {
         Estat e = (Estat)n;
         ArrayList <Integer> ocupacio = e.getOcupacioServidor();

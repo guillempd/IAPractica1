@@ -12,9 +12,11 @@ import java.util.ArrayList;
  *
  * @author guillem.perez.delgado
  */
+
 public class Practica1HeuristicFunctionMinMax implements HeuristicFunction {
     
     //Suponemos que ocupacio tiene almenos un elemento
+    @Override
     public double getHeuristicValue(Object n) {
         Estat e = (Estat)n;
         ArrayList <Integer> ocupacio = e.getOcupacioServidor();
