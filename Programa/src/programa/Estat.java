@@ -30,6 +30,9 @@ public class Estat {
         this.s = s;
         R = r.size();
         S = s.size();
+        assignacio = new ArrayList<>();
+        ocupacioServidor = new ArrayList<>();
+        
         
         for (int i = 0; i < S; i++){
             ocupacioServidor.add(0);
@@ -43,7 +46,8 @@ public class Estat {
             Set<Integer> set = s.fileLocations(file); //conte enters amb els
             //id dels servidors que contenen el fitxer de la request
             
-            Integer[] h = (Integer[]) set.toArray();
+            Integer[] h = new Integer[set.size()];
+            set.toArray(h);
             int serv_triat = escullServidor(user,h,g);
             assignacio.add(h[serv_triat]); //li assignem al servidor
             incrementa(ocupacioServidor, serv_triat, s.tranmissionTime(serv_triat, user));

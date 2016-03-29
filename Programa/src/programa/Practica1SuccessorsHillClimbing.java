@@ -22,6 +22,11 @@ public class Practica1SuccessorsHillClimbing implements SuccessorFunction {
     private Requests r;
     private Servers s;
     
+    public Practica1SuccessorsHillClimbing (Requests r, Servers s) {
+        this.r = r;
+        this.s = s;
+    }
+    
     public ArrayList<Successor> getSuccessors(Object aState) {
         Estat e = (Estat)aState;
         ArrayList<Integer> assignacio = e.getAssignacio();
