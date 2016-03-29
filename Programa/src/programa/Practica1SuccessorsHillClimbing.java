@@ -7,6 +7,7 @@ package programa;
 
 import IA.DistFS.Requests;
 import IA.DistFS.Servers;
+import aima.search.framework.HeuristicFunction;
 import aima.search.framework.Successor;
 import aima.search.framework.SuccessorFunction;
 import java.util.ArrayList;
@@ -21,10 +22,12 @@ public class Practica1SuccessorsHillClimbing implements SuccessorFunction {
     
     private Requests r;
     private Servers s;
+    private HeuristicFunction hf;
     
-    public Practica1SuccessorsHillClimbing (Requests r, Servers s) {
+    public Practica1SuccessorsHillClimbing (Requests r, Servers s, HeuristicFunction hf) {
         this.r = r;
         this.s = s;
+        this.hf = hf;
     }
     
     public ArrayList<Successor> getSuccessors(Object aState) {
@@ -41,7 +44,7 @@ public class Practica1SuccessorsHillClimbing implements SuccessorFunction {
                 if (server != assignacio.get(i)) {
                     Estat nouEstatDEuropa = new Estat(e);
                     nouEstatDEuropa.Operador(i, server);
-                    ret.add(new Successor("El request " + i + " ara s'envia des del servidor " + server + "\n", nouEstatDEuropa));
+                    ret.add(new Successor("Request " + i + " -> servidor " + server + ". Heuristica = " + hf.getHeuristicValue(nouEstatDEuropa) +"\n", nouEstatDEuropa));
                 }
             }
         }

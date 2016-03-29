@@ -28,11 +28,11 @@ public class Main {
     public static void main(String[] args) {
         // TODO code application logic here
         try {
-            Requests r = new Requests(5,10,0);
-            Servers s = new Servers(15,3,0);
-            Estat estatInicial = new Estat(r,s,Generacio.RANDOM);
-            Practica1SuccessorsHillClimbing successorFunction = new Practica1SuccessorsHillClimbing(r,s);
-            Practica1HeuristicFunctionSumaQuadrats heuristicFunction = new Practica1HeuristicFunctionSumaQuadrats();
+            Requests r = new Requests(5,5,10);
+            Servers s = new Servers(15,3,10);
+            Estat estatInicial = new Estat(r,s,Generacio.LLUNYA);
+            Practica1HeuristicFunctionSuma heuristicFunction = new Practica1HeuristicFunctionSuma();
+            Practica1SuccessorsHillClimbing successorFunction = new Practica1SuccessorsHillClimbing(r,s,heuristicFunction);
             GoalTest gt = new GoalTest(){
                 @Override
                 public boolean isGoalState(Object aState) {
@@ -40,8 +40,8 @@ public class Main {
                 }
             };
             
-            
-            
+            estatInicial.print();
+            System.out.print("\nHeuristic = " + heuristicFunction.getHeuristicValue(estatInicial) + "\n");
             
             
             

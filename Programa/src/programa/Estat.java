@@ -49,7 +49,7 @@ public class Estat {
             Integer[] h = new Integer[set.size()];
             set.toArray(h);
             int serv_triat = escullServidor(user,h,g);
-            assignacio.add(h[serv_triat]); //li assignem al servidor
+            assignacio.add(serv_triat); //li assignem al servidor
             incrementa(ocupacioServidor, serv_triat, s.tranmissionTime(serv_triat, user));
             //actualitzem el temps del servidor
         }
@@ -146,7 +146,7 @@ public class Estat {
         int old_serv = assignacio.get(request);
         assignacio.set(request, new_serv);
         incrementa(ocupacioServidor, old_serv, -s.tranmissionTime(old_serv, user));
-        incrementa(ocupacioServidor, new_serv, -s.tranmissionTime(new_serv, user));
+        incrementa(ocupacioServidor, new_serv, +s.tranmissionTime(new_serv, user));
     }
     
     /**
@@ -157,6 +157,12 @@ public class Estat {
      */
     private void incrementa (ArrayList<Integer> l, int i, int suma){
         l.set(i, l.get(i) + suma);
+    }
+    
+    public void print() {
+        for (int i = 0; i < R; ++i) {
+            System.out.print("Assig " + i + ": servidor " + assignacio.get(i)+"\n");
+        }
     }
     
 }
