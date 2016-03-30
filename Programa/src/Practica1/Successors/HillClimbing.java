@@ -3,10 +3,11 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package programa;
+package Practica1.Successors;
 
 import IA.DistFS.Requests;
 import IA.DistFS.Servers;
+import Practica1.Estat;
 import aima.search.framework.HeuristicFunction;
 import aima.search.framework.Successor;
 import aima.search.framework.SuccessorFunction;
@@ -18,13 +19,13 @@ import java.util.Set;
  *
  * @author david.folque
  */
-public class Practica1SuccessorsHillClimbing implements SuccessorFunction {
+public class HillClimbing implements SuccessorFunction {
     
     private Requests r;
     private Servers s;
     private HeuristicFunction hf;
     
-    public Practica1SuccessorsHillClimbing (Requests r, Servers s, HeuristicFunction hf) {
+    public HillClimbing (Requests r, Servers s, HeuristicFunction hf) {
         this.r = r;
         this.s = s;
         this.hf = hf;

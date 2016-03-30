@@ -3,8 +3,10 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package programa;
+package Practica1;
 
+import Practica1.Heuristics.Suma;
+import Practica1.Successors.HillClimbing;
 import IA.DistFS.Requests;
 import IA.DistFS.Servers;
 import aima.search.framework.GoalTest;
@@ -32,8 +34,8 @@ public class Main {
             Requests r = new Requests(200,5,10);
             Servers s = new Servers(10,5,10);
             Estat estatInicial = new Estat(r,s,Generacio.LLUNYA);
-            HeuristicFunction heuristicFunction = new Practica1HeuristicFunctionSuma();
-            Practica1SuccessorsHillClimbing successorFunction = new Practica1SuccessorsHillClimbing(r,s,heuristicFunction);
+            HeuristicFunction heuristicFunction = new Suma();
+            HillClimbing successorFunction = new HillClimbing(r,s,heuristicFunction);
             GoalTest gt = new GoalTest(){
                 @Override
                 public boolean isGoalState(Object aState) {

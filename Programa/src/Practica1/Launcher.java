@@ -3,8 +3,12 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package programa;
+package Practica1;
 
+import Practica1.Heuristics.MinMax;
+import Practica1.Heuristics.Suma;
+import Practica1.Heuristics.SumaQuadrats;
+import Practica1.Successors.HillClimbing;
 import IA.DistFS.Requests;
 import IA.DistFS.Servers;
 import aima.search.framework.GoalTest;
@@ -172,7 +176,7 @@ public class Launcher extends javax.swing.JFrame {
         jTextArea1.setColumns(20);
         jTextArea1.setRows(5);
         jTextArea1.setToolTipText("");
-        jTextArea1.setCursor(new java.awt.Cursor(java.awt.Cursor.TEXT_CURSOR));
+        jTextArea1.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         jTextArea1.setFocusable(false);
         jScrollPane1.setViewportView(jTextArea1);
 
@@ -415,9 +419,9 @@ public class Launcher extends javax.swing.JFrame {
         print("Generació de l'estat inicial: " + gen.toString() + "\n");
 
         HeuristicFunction heuristicFunction;
-        if (jRadioButton3.isSelected()) heuristicFunction = new Practica1HeuristicFunctionMinMax();
-        else if (jRadioButton4.isSelected()) heuristicFunction = new Practica1HeuristicFunctionSuma();
-        else heuristicFunction = new Practica1HeuristicFunctionSumaQuadrats();
+        if (jRadioButton3.isSelected()) heuristicFunction = new MinMax();
+        else if (jRadioButton4.isSelected()) heuristicFunction = new Suma();
+        else heuristicFunction = new SumaQuadrats();
         print("Funció heurística: " + heuristicFunction.getClass().getName() + "\n");
         
         try {
@@ -426,7 +430,7 @@ public class Launcher extends javax.swing.JFrame {
             Servers s = new Servers((int)jSpinner3.getValue(),(int)jSpinner4.getValue(),(int)jSpinner5.getValue());
             
             Estat estatInicial = new Estat(r,s,gen);
-            Practica1SuccessorsHillClimbing successorFunction = new Practica1SuccessorsHillClimbing(r,s,heuristicFunction);
+            HillClimbing successorFunction = new HillClimbing(r,s,heuristicFunction);
             GoalTest gt = new GoalTest(){
                 @Override
                 public boolean isGoalState(Object aState) {
