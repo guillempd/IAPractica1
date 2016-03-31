@@ -8,7 +8,7 @@ package Practica1;
 import Practica1.Heuristics.MinMax;
 import Practica1.Heuristics.Suma;
 import Practica1.Heuristics.SumaQuadrats;
-import Practica1.Successors.HillClimbing;
+import Practica1.Successors.SuccessorsHillClimbing;
 import IA.DistFS.Requests;
 import IA.DistFS.Servers;
 import aima.search.framework.GoalTest;
@@ -430,7 +430,7 @@ public class Launcher extends javax.swing.JFrame {
             Servers s = new Servers((int)jSpinner3.getValue(),(int)jSpinner4.getValue(),(int)jSpinner5.getValue());
             
             Estat estatInicial = new Estat(r,s,gen);
-            HillClimbing successorFunction = new HillClimbing(r,s,heuristicFunction);
+            SuccessorsHillClimbing successorFunction = new SuccessorsHillClimbing(r,s,heuristicFunction);
             GoalTest gt = new GoalTest(){
                 @Override
                 public boolean isGoalState(Object aState) {

@@ -19,13 +19,13 @@ import java.util.Set;
  *
  * @author david.folque
  */
-public class HillClimbing implements SuccessorFunction {
+public class SuccessorsHillClimbing implements SuccessorFunction {
     
     private Requests r;
     private Servers s;
     private HeuristicFunction hf;
     
-    public HillClimbing (Requests r, Servers s, HeuristicFunction hf) {
+    public SuccessorsHillClimbing (Requests r, Servers s, HeuristicFunction hf) {
         this.r = r;
         this.s = s;
         this.hf = hf;

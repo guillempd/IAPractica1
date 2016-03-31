@@ -6,7 +6,7 @@
 package Practica1;
 
 import Practica1.Heuristics.Suma;
-import Practica1.Successors.HillClimbing;
+import Practica1.Successors.SuccessorsHillClimbing;
 import IA.DistFS.Requests;
 import IA.DistFS.Servers;
 import aima.search.framework.GoalTest;
@@ -35,7 +35,7 @@ public class Main {
             Servers s = new Servers(10,5,10);
             Estat estatInicial = new Estat(r,s,Generacio.LLUNYA);
             HeuristicFunction heuristicFunction = new Suma();
-            HillClimbing successorFunction = new HillClimbing(r,s,heuristicFunction);
+            SuccessorsHillClimbing successorFunction = new SuccessorsHillClimbing(r,s,heuristicFunction);
             GoalTest gt = new GoalTest(){
                 @Override
                 public boolean isGoalState(Object aState) {
