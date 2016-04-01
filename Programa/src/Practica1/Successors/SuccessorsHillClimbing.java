@@ -46,7 +46,7 @@ public class SuccessorsHillClimbing implements SuccessorFunction {
                 if (server != assignacio.get(i)) {
                     Estat nouEstatDEuropa = new Estat(e);
                     nouEstatDEuropa.Operador(i, server);
-                    ret.add(new Successor("Request " + i + " -> servidor " + server + ". Heuristica = " + hf.getHeuristicValue(nouEstatDEuropa) +"\n", nouEstatDEuropa));
+                    ret.add(new Successor("Request " + i + " -> servidor " + server + /*". Heuristica = " + hf.getHeuristicValue(nouEstatDEuropa) +*/"\n", nouEstatDEuropa));
                 }
             }
         }

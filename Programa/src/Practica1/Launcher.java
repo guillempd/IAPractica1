@@ -194,11 +194,11 @@ public class Launcher extends javax.swing.JFrame {
 
         jPanel4.setBorder(javax.swing.BorderFactory.createTitledBorder("Resultats"));
 
+        jTextArea1.setEditable(false);
         jTextArea1.setColumns(20);
         jTextArea1.setRows(5);
         jTextArea1.setToolTipText("");
         jTextArea1.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
-        jTextArea1.setFocusable(false);
         jScrollPane1.setViewportView(jTextArea1);
 
         jButton1.setText("Començar");
@@ -397,8 +397,6 @@ public class Launcher extends javax.swing.JFrame {
                     .addComponent(jPanel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
         );
 
-        jPanel6.getAccessibleContext().setAccessibleName("Paràmetres del Simulated Annealing");
-
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
@@ -503,6 +501,7 @@ public class Launcher extends javax.swing.JFrame {
     Estat estatInicial;
     Requests r = null;
     Servers s = null;
+    long t1, t2;
     
     private void inici() {
         jPanel6.setVisible(false);
@@ -532,6 +531,7 @@ public class Launcher extends javax.swing.JFrame {
                 return false;
             }
         };
+        t1 = System.currentTimeMillis();
         estatInicial = new Estat(r,s,gen);
         print("Heuristic inicial = " + heuristicFunction.getHeuristicValue(estatInicial) + "\n");
         
@@ -548,11 +548,11 @@ public class Launcher extends javax.swing.JFrame {
             Problem problem =  new Problem(estatInicial, successorFunction, gt, heuristicFunction);
             Search search =  new HillClimbingSearch();
             SearchAgent agent = new SearchAgent(problem,search);
+            t2 = System.currentTimeMillis();
             
-            System.out.println();
             printActionsHC(agent.getActions());
             printInstrumentation(agent.getInstrumentation());
-            
+            cosesFinals((Estat)search.getGoalState());
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -567,11 +567,12 @@ public class Launcher extends javax.swing.JFrame {
             //Parametres: n iter, iter/ pas de temperatura, k, lambda
             Search search =  new SimulatedAnnealingSearch(10000,1,10,0.1);
             SearchAgent agent = new SearchAgent(problem,search);
+            t2 = System.currentTimeMillis();
             
             System.out.println();
             printActionsSA(search.getPathStates());
             printInstrumentation(agent.getInstrumentation());
-            
+            cosesFinals((Estat)search.getGoalState());
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -583,8 +584,15 @@ public class Launcher extends javax.swing.JFrame {
         while (keys.hasNext()) {
             String key = (String) keys.next();
             String property = properties.getProperty(key);
-            print(key + " : " + property);
+            print(key + " : " + property + "\n");
         }
+    }
+    
+    private void cosesFinals(Estat est) {
+        long time = t2-t1;
+        print("timeElapsed : " + time + "\n");
+        print("totalSum : " + (new Suma()).getHeuristicValue(est) + "\n");
+        print("minMax : " + (new MinMax()).getHeuristicValue(est) + "\n");
     }
     
     private void printActionsHC(List actions) {

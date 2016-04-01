@@ -50,17 +50,17 @@ public class SuccessorsSimulatedAnnealing implements SuccessorFunction {
         Estat e = (Estat)aState;
         ArrayList<Integer> assignacio = e.getAssignacio();
         ArrayList<Successor> ret = new ArrayList<>();
-        int i = rand.nextInt(r.size());
-            int fileID = r.getRequest(i)[1];
-            Set<Integer> setServers = s.fileLocations(fileID);
-            Integer[] servers = new Integer[setServers.size()];
-            setServers.toArray(servers);
-            int j;
-            do j = rand.nextInt(servers.length);
-            while (servers[j].equals(assignacio.get(i)));
-                Estat nouEstatDEuropa = new Estat(e);
-                nouEstatDEuropa.Operador(i, servers[j]);
-                ret.add(new Successor("Request " + i + " -> servidor " + servers[j] + "\n", nouEstatDEuropa));
+        int k, i, j;
+        do {
+            k = rand.nextInt(RS.size());
+            i = RS.get(k).x;
+            j = RS.get(k).y;
+        }
+        while (assignacio.get(i) == j);
+        
+        Estat nouEstatDEuropa = new Estat(e);
+        nouEstatDEuropa.Operador(i, j);
+        ret.add(new Successor("Request " + i + " -> servidor " + j + "\n", nouEstatDEuropa));
 
         return ret;
     }
