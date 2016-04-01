@@ -139,9 +139,6 @@ public class Estat {
      */
     public void Operador (int request, int new_serv){
         int user = r.getRequest(request)[0];
-        int file = r.getRequest(request)[1];
-        //si el nou servidor no conte la request, no fem res
-        if (!s.fileLocations(file).contains(new_serv)) return; 
         
         int old_serv = assignacio.get(request);
         assignacio.set(request, new_serv);
