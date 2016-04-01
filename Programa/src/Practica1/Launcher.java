@@ -20,6 +20,7 @@ import aima.search.framework.SearchAgent;
 import aima.search.framework.SuccessorFunction;
 import aima.search.informed.HillClimbingSearch;
 import aima.search.informed.SimulatedAnnealingSearch;
+import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Properties;
@@ -444,7 +445,6 @@ public class Launcher extends javax.swing.JFrame {
             }
         };
         estatInicial = new Estat(r,s,gen);
-        estatInicial.print();
         print("Heuristic inicial = " + heuristicFunction.getHeuristicValue(estatInicial) + "\n");
         
         if (jRadioButton1.isSelected()) hillClimbing();
@@ -477,7 +477,7 @@ public class Launcher extends javax.swing.JFrame {
             
             Problem problem =  new Problem(estatInicial, successorFunction, gt, heuristicFunction);
             //Parametres: n iter, iter/ pas de temperatura, k, lambda
-            Search search =  new SimulatedAnnealingSearch(10000,2,100,-0.001);
+            Search search =  new SimulatedAnnealingSearch(10000,1,10,0.1);
             SearchAgent agent = new SearchAgent(problem,search);
             
             System.out.println();
@@ -488,6 +488,7 @@ public class Launcher extends javax.swing.JFrame {
             e.printStackTrace();
         }
     }
+    
     
     private void printInstrumentation(Properties properties) {
         Iterator keys = properties.keySet().iterator();
