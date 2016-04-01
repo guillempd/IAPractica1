@@ -10,6 +10,7 @@ import IA.DistFS.Servers;
 import Practica1.Estat;
 import aima.search.framework.HeuristicFunction;
 import aima.search.framework.Successor;
+import aima.search.framework.SuccessorFunction;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.Random;
@@ -19,7 +20,7 @@ import java.util.Set;
  *
  * @author David
  */
-public class SuccessorsSimulatedAnnealing {
+public class SuccessorsSimulatedAnnealing implements SuccessorFunction {
     
     private Requests r;
     private Servers s;
@@ -34,7 +35,7 @@ public class SuccessorsSimulatedAnnealing {
     public ArrayList<Successor> getSuccessors(Object aState) {
         Estat e = (Estat)aState;
         ArrayList<Integer> assignacio = e.getAssignacio();
-        ArrayList<Successor> ret = new ArrayList();
+        ArrayList<Successor> ret = new ArrayList<>();
         Random rand = new Random(System.currentTimeMillis());
         int i = rand.nextInt(r.size()-1);
             int fileID = r.getRequest(i)[1];
