@@ -11,12 +11,15 @@ import Practica1.Heuristics.SumaQuadrats;
 import Practica1.Successors.SuccessorsHillClimbing;
 import IA.DistFS.Requests;
 import IA.DistFS.Servers;
+import Practica1.Successors.SuccessorsSimulatedAnnealing;
 import aima.search.framework.GoalTest;
 import aima.search.framework.HeuristicFunction;
 import aima.search.framework.Problem;
 import aima.search.framework.Search;
 import aima.search.framework.SearchAgent;
+import aima.search.framework.SuccessorFunction;
 import aima.search.informed.HillClimbingSearch;
+import aima.search.informed.SimulatedAnnealingSearch;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Properties;
@@ -405,6 +408,8 @@ public class Launcher extends javax.swing.JFrame {
     // End of variables declaration//GEN-END:variables
     
     
+    HeuristicFunction heuristicFunction;
+    
     private void inici() {
         
     }
@@ -418,7 +423,6 @@ public class Launcher extends javax.swing.JFrame {
         else gen = Generacio.LLUNYA;
         print("Generació de l'estat inicial: " + gen.toString() + "\n");
 
-        HeuristicFunction heuristicFunction;
         if (jRadioButton3.isSelected()) heuristicFunction = new MinMax();
         else if (jRadioButton4.isSelected()) heuristicFunction = new Suma();
         else heuristicFunction = new SumaQuadrats();
@@ -428,26 +432,33 @@ public class Launcher extends javax.swing.JFrame {
             
             Requests r = new Requests((int)jSpinner1.getValue(),(int)jSpinner2.getValue(),(int)jSpinner5.getValue());
             Servers s = new Servers((int)jSpinner3.getValue(),(int)jSpinner4.getValue(),(int)jSpinner5.getValue());
-            
-            Estat estatInicial = new Estat(r,s,gen);
-            SuccessorsHillClimbing successorFunction = new SuccessorsHillClimbing(r,s,heuristicFunction);
             GoalTest gt = new GoalTest(){
                 @Override
                 public boolean isGoalState(Object aState) {
                     return false;
                 }
             };
-            
-            //estatInicial.print();
+            Estat estatInicial = new Estat(r,s,gen);
             print("Heuristic inicial = " + heuristicFunction.getHeuristicValue(estatInicial) + "\n");
+            SuccessorFunction successorFunction;
+            Search search;
             
+            if (jRadioButton1.isSelected()) {
+                successorFunction = new SuccessorsHillClimbing(r,s,heuristicFunction);
+                search =  new HillClimbingSearch();
+            }
+            else {
+                successorFunction = new SuccessorsSimulatedAnnealing(r,s,heuristicFunction);
+                //Parametres: n iter, iter/ pas de temperatura, k, lambda
+                search =  new SimulatedAnnealingSearch();
+            }
             
             Problem problem =  new Problem(estatInicial, successorFunction, gt, heuristicFunction);
-            Search search =  new HillClimbingSearch();
             SearchAgent agent = new SearchAgent(problem,search);
             
             System.out.println();
             printActions(agent.getActions());
+            
             printInstrumentation(agent.getInstrumentation());
         } catch (Exception e) {
             e.printStackTrace();
@@ -465,8 +476,13 @@ public class Launcher extends javax.swing.JFrame {
     
     private void printActions(List actions) {
         for (int i = 0; i < actions.size(); i++) {
-            String action = (String) actions.get(i);
-            print(action);
+            try {
+                String action = (String) actions.get(i);
+                print(action);
+            }catch(Exception ex) {
+                Estat est = (Estat) actions.get(i);
+                print("Heurístic = " + heuristicFunction.getHeuristicValue(est) + "\n");
+            }
         }
     }
     
