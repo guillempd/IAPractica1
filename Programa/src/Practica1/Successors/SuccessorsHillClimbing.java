@@ -21,9 +21,9 @@ import java.util.Set;
  */
 public class SuccessorsHillClimbing implements SuccessorFunction {
     
-    private Requests r;
-    private Servers s;
-    private HeuristicFunction hf;
+    private final Requests r;
+    private final Servers s;
+    private final HeuristicFunction hf;
     
     public SuccessorsHillClimbing (Requests r, Servers s, HeuristicFunction hf) {
         this.r = r;
@@ -31,6 +31,7 @@ public class SuccessorsHillClimbing implements SuccessorFunction {
         this.hf = hf;
     }
     
+    @Override
     public ArrayList<Successor> getSuccessors(Object aState) {
         Estat e = (Estat)aState;
         ArrayList<Integer> assignacio = e.getAssignacio();

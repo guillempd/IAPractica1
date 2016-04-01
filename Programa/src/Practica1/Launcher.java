@@ -444,6 +444,8 @@ public class Launcher extends javax.swing.JFrame {
             }
         };
         estatInicial = new Estat(r,s,gen);
+        estatInicial.print();
+        print("Heuristic inicial = " + heuristicFunction.getHeuristicValue(estatInicial) + "\n");
         
         if (jRadioButton1.isSelected()) hillClimbing();
         else simulatedAnnealing();
@@ -453,16 +455,6 @@ public class Launcher extends javax.swing.JFrame {
     
     private void hillClimbing() {
         try {
-            Requests r = new Requests((int)jSpinner1.getValue(),(int)jSpinner2.getValue(),(int)jSpinner5.getValue());
-            Servers s = new Servers((int)jSpinner3.getValue(),(int)jSpinner4.getValue(),(int)jSpinner5.getValue());
-            GoalTest gt = new GoalTest(){
-                @Override
-                public boolean isGoalState(Object aState) {
-                    return false;
-                }
-            };
-            Estat estatInicial = new Estat(r,s,gen);
-            print("Heuristic inicial = " + heuristicFunction.getHeuristicValue(estatInicial) + "\n");
             SuccessorFunction successorFunction = new SuccessorsHillClimbing(r,s,heuristicFunction);
             
             Problem problem =  new Problem(estatInicial, successorFunction, gt, heuristicFunction);
@@ -470,9 +462,9 @@ public class Launcher extends javax.swing.JFrame {
             SearchAgent agent = new SearchAgent(problem,search);
             
             System.out.println();
-            printActions(agent.getActions());
-            
+            printActionsHC(agent.getActions());
             printInstrumentation(agent.getInstrumentation());
+            
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -481,21 +473,17 @@ public class Launcher extends javax.swing.JFrame {
     private void simulatedAnnealing() {
         try {
             
-            print("Heuristic inicial = " + heuristicFunction.getHeuristicValue(estatInicial) + "\n");
-            SuccessorFunction successorFunction;
-            Search search;
-           
-            successorFunction = new SuccessorsSimulatedAnnealing(r,s,heuristicFunction);
-            //Parametres: n iter, iter/ pas de temperatura, k, lambda
-            search =  new SimulatedAnnealingSearch();
+            SuccessorFunction successorFunction = new SuccessorsSimulatedAnnealing(r,s,heuristicFunction);;
             
             Problem problem =  new Problem(estatInicial, successorFunction, gt, heuristicFunction);
+            //Parametres: n iter, iter/ pas de temperatura, k, lambda
+            Search search =  new SimulatedAnnealingSearch(10000,2,100,-0.001);
             SearchAgent agent = new SearchAgent(problem,search);
             
             System.out.println();
-            printActions(agent.getActions());
-            
+            printActionsSA(search.getPathStates());
             printInstrumentation(agent.getInstrumentation());
+            
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -510,15 +498,17 @@ public class Launcher extends javax.swing.JFrame {
         }
     }
     
-    private void printActions(List actions) {
+    private void printActionsHC(List actions) {
         for (int i = 0; i < actions.size(); i++) {
-            try {
-                String action = (String) actions.get(i);
-                print(action);
-            }catch(Exception ex) {
-                Estat est = (Estat) actions.get(i);
-                print("Heurístic = " + heuristicFunction.getHeuristicValue(est) + "\n");
-            }
+            String action = (String) actions.get(i);
+            print(action);
+        }
+    }
+    
+    private void printActionsSA(List states) {
+        for (int i = 0; i < states.size(); ++i) {
+            Estat est = (Estat)states.get(i);
+            print("Heurístic = " + heuristicFunction.getHeuristicValue(est) + "\n");
         }
     }
     

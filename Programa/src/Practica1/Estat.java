@@ -78,7 +78,7 @@ public class Estat {
     private int escullServidor(int user, Integer[] h, Generacio g){
         if (g == Generacio.RANDOM){
             Random rand = new Random(System.currentTimeMillis());
-            return rand.nextInt(h.length);//triem un servidor aleatori
+            return h[rand.nextInt(h.length)];//triem un servidor aleatori
         }else if (g == Generacio.PROPER){
             int mindist = s.tranmissionTime(h[0], user);
             int minserv = h[0];
