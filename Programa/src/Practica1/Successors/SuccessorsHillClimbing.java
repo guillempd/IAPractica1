@@ -34,7 +34,7 @@ public class SuccessorsHillClimbing implements SuccessorFunction {
     public ArrayList<Successor> getSuccessors(Object aState) {
         Estat e = (Estat)aState;
         ArrayList<Integer> assignacio = e.getAssignacio();
-        ArrayList<Successor> ret = new ArrayList();
+        ArrayList<Successor> ret = new ArrayList<>();
         int R = r.size();
         for (int i = 0; i < R; ++i) {
             int fileID = r.getRequest(i)[1];
