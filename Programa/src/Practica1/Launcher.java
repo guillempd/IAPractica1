@@ -521,20 +521,18 @@ public class Launcher extends javax.swing.JFrame {
     Requests r = null;
     Servers s = null;
     long t1, t2;
+    DefaultCategoryDataset dataset;
     
     private void inici() {
         jPanel6.setVisible(false);
-        DefaultCategoryDataset dataset = new DefaultCategoryDataset();
+        dataset = new DefaultCategoryDataset();
         dataset.setValue(8, "Mujeres", "Lunes");
         dataset.setValue(7, "Hombres", "Lunes");
         dataset.setValue(9, "Mujeres", "Martes");
         dataset.setValue(4, "Hombres", "Martes");
         dataset.setValue(4, "Mujeres", "Miercoles");
         dataset.setValue(5, "Hombres", "Miercoles");
-        dataset.setValue(8, "Mujeres", "Jueves");
-        dataset.setValue(9, "Hombres", "Jueves");
-        dataset.setValue(7, "Mujeres", "Viernes");
-        dataset.setValue(8, "Hombres", "Viernes");
+        
         // Creando el Grafico
         JFreeChart chart = ChartFactory.createBarChart3D
         ("Participacion por Genero","Genero", "Dias", 
@@ -549,7 +547,11 @@ public class Launcher extends javax.swing.JFrame {
     }
     
     private void boto_comencar() {
-        
+        dataset.clear();
+        dataset.setValue(8, "Mujeres", "Jueves");
+        dataset.setValue(9, "Hombres", "Jueves");
+        dataset.setValue(7, "Mujeres", "Viernes");
+        dataset.setValue(8, "Hombres", "Viernes");
         jTextArea1.setText("");
         if (jRadioButton6.isSelected()) gen = Generacio.RANDOM;
         else if (jRadioButton7.isSelected()) gen = Generacio.PROPER;
