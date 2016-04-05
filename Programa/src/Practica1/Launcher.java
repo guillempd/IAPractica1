@@ -11,6 +11,8 @@ import Practica1.Heuristics.SumaQuadrats;
 import Practica1.Successors.SuccessorsHillClimbing;
 import IA.DistFS.Requests;
 import IA.DistFS.Servers;
+import Practica1.Heuristics.Desviacio;
+import Practica1.Heuristics.DesviacioTipica;
 import Practica1.Successors.SuccessorsSimulatedAnnealing;
 import aima.search.framework.GoalTest;
 import aima.search.framework.HeuristicFunction;
@@ -67,6 +69,8 @@ public class Launcher extends javax.swing.JFrame {
         jRadioButton3 = new javax.swing.JRadioButton();
         jRadioButton4 = new javax.swing.JRadioButton();
         jRadioButton5 = new javax.swing.JRadioButton();
+        jRadioButton9 = new javax.swing.JRadioButton();
+        jRadioButton10 = new javax.swing.JRadioButton();
         jPanel3 = new javax.swing.JPanel();
         jRadioButton6 = new javax.swing.JRadioButton();
         jRadioButton7 = new javax.swing.JRadioButton();
@@ -148,6 +152,12 @@ public class Launcher extends javax.swing.JFrame {
         buttonGroup3.add(jRadioButton5);
         jRadioButton5.setText("Suma de quadrats");
 
+        buttonGroup3.add(jRadioButton9);
+        jRadioButton9.setLabel("Desviació");
+
+        buttonGroup3.add(jRadioButton10);
+        jRadioButton10.setLabel("Desviació típica");
+
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
@@ -156,7 +166,9 @@ public class Launcher extends javax.swing.JFrame {
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jRadioButton3)
                     .addComponent(jRadioButton4)
-                    .addComponent(jRadioButton5))
+                    .addComponent(jRadioButton5)
+                    .addComponent(jRadioButton9)
+                    .addComponent(jRadioButton10))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel2Layout.setVerticalGroup(
@@ -165,8 +177,12 @@ public class Launcher extends javax.swing.JFrame {
                 .addComponent(jRadioButton3)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jRadioButton4)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jRadioButton5))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jRadioButton5)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jRadioButton9)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jRadioButton10))
         );
 
         jPanel3.setBorder(javax.swing.BorderFactory.createTitledBorder("Estat inicial"));
@@ -206,7 +222,7 @@ public class Launcher extends javax.swing.JFrame {
 
         jLabel1.setText("Users");
 
-        jSpinner1.setModel(new javax.swing.SpinnerNumberModel(Integer.valueOf(200), null, null, Integer.valueOf(1)));
+        jSpinner1.setModel(new javax.swing.SpinnerNumberModel(Integer.valueOf(20), null, null, Integer.valueOf(1)));
 
         jLabel2.setText("Max requests");
 
@@ -361,7 +377,7 @@ public class Launcher extends javax.swing.JFrame {
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel4Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 349, Short.MAX_VALUE)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 384, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
@@ -410,7 +426,7 @@ public class Launcher extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jButton1)
                         .addGap(0, 0, Short.MAX_VALUE))
-                    .addComponent(jTabbedPane1))
+                    .addComponent(jTabbedPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE))
                 .addContainerGap())
         );
 
@@ -493,6 +509,7 @@ public class Launcher extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel6;
     private javax.swing.JPanel jPanel7;
     private javax.swing.JRadioButton jRadioButton1;
+    private javax.swing.JRadioButton jRadioButton10;
     private javax.swing.JRadioButton jRadioButton2;
     private javax.swing.JRadioButton jRadioButton3;
     private javax.swing.JRadioButton jRadioButton4;
@@ -500,6 +517,7 @@ public class Launcher extends javax.swing.JFrame {
     private javax.swing.JRadioButton jRadioButton6;
     private javax.swing.JRadioButton jRadioButton7;
     private javax.swing.JRadioButton jRadioButton8;
+    private javax.swing.JRadioButton jRadioButton9;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JSpinner jSpinner1;
     private javax.swing.JSpinner jSpinner2;
@@ -526,19 +544,13 @@ public class Launcher extends javax.swing.JFrame {
     private void inici() {
         jPanel6.setVisible(false);
         dataset = new DefaultCategoryDataset();
-        dataset.setValue(8, "Mujeres", "Lunes");
-        dataset.setValue(7, "Hombres", "Lunes");
-        dataset.setValue(9, "Mujeres", "Martes");
-        dataset.setValue(4, "Hombres", "Martes");
-        dataset.setValue(4, "Mujeres", "Miercoles");
-        dataset.setValue(5, "Hombres", "Miercoles");
         
         // Creando el Grafico
-        JFreeChart chart = ChartFactory.createBarChart3D
-        ("Participacion por Genero","Genero", "Dias", 
-        dataset, PlotOrientation.VERTICAL, true,true, false);
-        chart.setBackgroundPaint(Color.cyan);
-        chart.getTitle().setPaint(Color.black); 
+        JFreeChart chart = ChartFactory.createBarChart
+        ("Ocupació dels servidors","", "ms", 
+        dataset, PlotOrientation.VERTICAL, false,false, false);
+        //chart.setBackgroundPaint(Color.cyan);
+        //chart.getTitle().setPaint(Color.black); 
         CategoryPlot p = chart.getCategoryPlot(); 
         p.setRangeGridlinePaint(Color.red); 
         // Mostrar Grafico
@@ -547,11 +559,7 @@ public class Launcher extends javax.swing.JFrame {
     }
     
     private void boto_comencar() {
-        dataset.clear();
-        dataset.setValue(8, "Mujeres", "Jueves");
-        dataset.setValue(9, "Hombres", "Jueves");
-        dataset.setValue(7, "Mujeres", "Viernes");
-        dataset.setValue(8, "Hombres", "Viernes");
+        
         jTextArea1.setText("");
         if (jRadioButton6.isSelected()) gen = Generacio.RANDOM;
         else if (jRadioButton7.isSelected()) gen = Generacio.PROPER;
@@ -560,12 +568,15 @@ public class Launcher extends javax.swing.JFrame {
 
         if (jRadioButton3.isSelected()) heuristicFunction = new MinMax();
         else if (jRadioButton4.isSelected()) heuristicFunction = new Suma();
-        else heuristicFunction = new SumaQuadrats();
+        else if (jRadioButton5.isSelected()) heuristicFunction = new SumaQuadrats();
+        else if (jRadioButton9.isSelected()) heuristicFunction = new Desviacio();
+        else heuristicFunction = new DesviacioTipica();
         print("Funció heurística: " + heuristicFunction.getClass().getName() + "\n");
+        int S = (int)jSpinner3.getValue();
         
         try {
             r = new Requests((int)jSpinner1.getValue(),(int)jSpinner2.getValue(),(int)jSpinner5.getValue());
-            s = new Servers((int)jSpinner3.getValue(),(int)jSpinner4.getValue(),(int)jSpinner5.getValue());
+            s = new Servers(S,(int)jSpinner4.getValue(),(int)jSpinner5.getValue());
         }
         catch(Exception e) { }
         gt = new GoalTest(){
@@ -574,17 +585,27 @@ public class Launcher extends javax.swing.JFrame {
                 return false;
             }
         };
+        
         t1 = System.currentTimeMillis();
         estatInicial = new Estat(r,s,gen);
         print("Heuristic inicial = " + heuristicFunction.getHeuristicValue(estatInicial) + "\n");
         
-        if (jRadioButton1.isSelected()) hillClimbing();
-        else simulatedAnnealing();
+        Estat efinal;
+        if (jRadioButton1.isSelected()) efinal = hillClimbing();
+        else efinal = simulatedAnnealing();
         
+        if (efinal != null) {
+            dataset.clear();
+            ArrayList<Integer> ocup = efinal.getOcupacioServidor();
+            for (int i = 0; i < S; ++i) {
+                dataset.setValue(ocup.get(i), "", ""+i);
+                System.out.print(ocup.get(i) + " " + i + "\n");
+            }
+        }
         
     }
     
-    private void hillClimbing() {
+    private Estat hillClimbing() {
         try {
             SuccessorFunction successorFunction = new SuccessorsHillClimbing(r,s,heuristicFunction);
             
@@ -596,12 +617,14 @@ public class Launcher extends javax.swing.JFrame {
             printActionsHC(agent.getActions());
             printInstrumentation(agent.getInstrumentation());
             cosesFinals((Estat)search.getGoalState());
+            return (Estat) search.getGoalState();
         } catch (Exception e) {
             e.printStackTrace();
         }
+        return null;
     }
     
-    private void simulatedAnnealing() {
+    private Estat simulatedAnnealing() {
         try {
             
             SuccessorFunction successorFunction = new SuccessorsSimulatedAnnealing(r,s,heuristicFunction);;
@@ -616,9 +639,11 @@ public class Launcher extends javax.swing.JFrame {
             printActionsSA(search.getPathStates());
             printInstrumentation(agent.getInstrumentation());
             cosesFinals((Estat)search.getGoalState());
+            return (Estat) search.getGoalState();
         } catch (Exception e) {
             e.printStackTrace();
         }
+        return null;
     }
     
     
@@ -636,6 +661,8 @@ public class Launcher extends javax.swing.JFrame {
         print("timeElapsed : " + time + "\n");
         print("totalSum : " + (new Suma()).getHeuristicValue(est) + "\n");
         print("minMax : " + (new MinMax()).getHeuristicValue(est) + "\n");
+        print("desviacio : " + (new Desviacio()).getHeuristicValue(est)+ "\n");
+        print("desviacioTipica : " + Math.sqrt((new DesviacioTipica()).getHeuristicValue(est)) + "\n"); 
     }
     
     private void printActionsHC(List actions) {
