@@ -612,7 +612,7 @@ public class Launcher extends javax.swing.JFrame {
         };
         
         t1 = System.currentTimeMillis();
-        estatInicial = new Estat(r,s,gen);
+        estatInicial = new Estat(r,s,S,gen);
         print("Heuristic inicial = " + heuristicFunction.getHeuristicValue(estatInicial) + "\n");
         
         Estat efinal;

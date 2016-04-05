@@ -22,7 +22,7 @@ public class MinMax implements HeuristicFunction {
         Estat e = (Estat)n;
         ArrayList <Integer> ocupacio = e.getOcupacioServidor();
         double max = ocupacio.get(0);
-        int S = ocupacio.size();
+        int S = e.serversSize();
         for (int i = 1; i < S; ++i) {
             double ocupacioI = ocupacio.get(i);
             if (ocupacioI > max) max = ocupacioI;

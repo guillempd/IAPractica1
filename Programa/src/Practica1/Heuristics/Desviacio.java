@@ -25,7 +25,25 @@ public class Desviacio implements HeuristicFunction {
         for (int i = 0; i < S; ++i) sum += (double)ocupacio.get(i);
         double mitja = sum/(double)S;
         double desviacio = 0;
-        for (int i = 0; i < S; ++i) desviacio += abs(mitja-(double)ocupacio.get(i));
+        for (int i = 0; i < S; ++i)  {
+            desviacio += abs(mitja-(double)ocupacio.get(i));
+        }
+        return desviacio;
+    }
+    public double getHeuristicValue2(Object n) {
+        Estat e = (Estat)n;
+        ArrayList <Integer> ocupacio = e.getOcupacioServidor();
+        int S = ocupacio.size();
+        double sum = 0;
+        for (int i = 0; i < S; ++i) sum += (double)ocupacio.get(i);
+        double mitja = sum/(double)S;
+        System.out.println("mitjana : " + mitja);
+        double desviacio = 0;
+        for (int i = 0; i < S; ++i)  {
+            double ocupacioI = (double)ocupacio.get(i);
+            System.out.println(mitja-ocupacioI);
+            desviacio += abs(mitja-ocupacioI);
+        }
         return desviacio;
     }
     

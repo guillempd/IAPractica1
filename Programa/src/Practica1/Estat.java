@@ -25,11 +25,11 @@ public class Estat {
      * @param s Conjunt de servidors
      * @param g Com es genera l'estat inicial
      */
-    public Estat(Requests r, Servers s, Generacio g) {
+    public Estat(Requests r, Servers s, int S, Generacio g) {
         this.r = r;
         this.s = s;
         R = r.size();
-        S = s.size();
+        this.S = S;
         assignacio = new ArrayList<>();
         ocupacioServidor = new ArrayList<>();
         
@@ -116,6 +116,10 @@ public class Estat {
      */
     public ArrayList<Integer> getOcupacioServidor(){
         return ocupacioServidor;
+    }
+    
+    public int serversSize() {
+        return S;
     }
     
     /**

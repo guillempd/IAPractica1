@@ -19,7 +19,7 @@ public class SumaQuadrats implements HeuristicFunction {
     public double getHeuristicValue(Object n) {
         Estat e = (Estat)n;
         ArrayList <Integer> ocupacio = e.getOcupacioServidor();
-        int S = ocupacio.size();
+        int S = e.serversSize();
         double sumQuadrats = 0;
         for (int i = 0; i < S; ++i) {
             double ocupacioI = ocupacio.get(i);
