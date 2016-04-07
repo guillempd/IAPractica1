@@ -44,8 +44,12 @@ import org.jfree.chart.ChartFactory;
 import org.jfree.chart.ChartPanel;
 import org.jfree.chart.ChartUtilities;
 import org.jfree.chart.JFreeChart;
+import org.jfree.chart.StandardChartTheme;
+import org.jfree.chart.axis.CategoryAxis;
 import org.jfree.chart.plot.CategoryPlot;
 import org.jfree.chart.plot.PlotOrientation;
+import org.jfree.chart.renderer.category.BarRenderer;
+import org.jfree.chart.renderer.category.StandardBarPainter;
 import org.jfree.data.category.DefaultCategoryDataset;
 
 /**
@@ -136,6 +140,7 @@ public class Launcher extends javax.swing.JFrame {
         jButton2 = new javax.swing.JButton();
         jButton1 = new javax.swing.JButton();
         jButton3 = new javax.swing.JButton();
+        jButton4 = new javax.swing.JButton();
         jPanel1 = new javax.swing.JPanel();
         jTabbedPane1 = new javax.swing.JTabbedPane();
         jPanel4 = new javax.swing.JPanel();
@@ -485,7 +490,7 @@ public class Launcher extends javax.swing.JFrame {
             }
         });
 
-        jButton1.setText("Començar");
+        jButton1.setText("Start");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton1ActionPerformed(evt);
@@ -496,6 +501,13 @@ public class Launcher extends javax.swing.JFrame {
         jButton3.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton3ActionPerformed(evt);
+            }
+        });
+
+        jButton4.setText("Grafics");
+        jButton4.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton4ActionPerformed(evt);
             }
         });
 
@@ -530,9 +542,11 @@ public class Launcher extends javax.swing.JFrame {
                                     .addComponent(jSpinner4, javax.swing.GroupLayout.DEFAULT_SIZE, 59, Short.MAX_VALUE)
                                     .addComponent(jSpinner2)))))
                     .addGroup(jPanel5Layout.createSequentialGroup()
-                        .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 107, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 69, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 114, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                        .addComponent(jButton4, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jButton3))))
         );
         jPanel5Layout.setVerticalGroup(
             jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -557,7 +571,8 @@ public class Launcher extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButton1)
-                    .addComponent(jButton3))
+                    .addComponent(jButton3)
+                    .addComponent(jButton4))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
@@ -609,14 +624,14 @@ public class Launcher extends javax.swing.JFrame {
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel4Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 551, Short.MAX_VALUE)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 536, Short.MAX_VALUE)
                 .addContainerGap())
         );
         jPanel4Layout.setVerticalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel4Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 369, Short.MAX_VALUE)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 349, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
@@ -637,11 +652,12 @@ public class Launcher extends javax.swing.JFrame {
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jTabbedPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 588, Short.MAX_VALUE)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                        .addGap(0, 0, Short.MAX_VALUE)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(jTabbedPane1))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(bHide)))
                 .addContainerGap())
         );
@@ -649,7 +665,7 @@ public class Launcher extends javax.swing.JFrame {
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jTabbedPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 442, Short.MAX_VALUE)
+                .addComponent(jTabbedPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(bHide)
                 .addContainerGap())
@@ -719,6 +735,10 @@ public class Launcher extends javax.swing.JFrame {
         jPanel6.setVisible(!bHide.isSelected());
     }//GEN-LAST:event_bHideActionPerformed
 
+    private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
+        boto_grafics();
+    }//GEN-LAST:event_jButton4ActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -775,6 +795,7 @@ public class Launcher extends javax.swing.JFrame {
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
+    private javax.swing.JButton jButton4;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
@@ -838,8 +859,9 @@ public class Launcher extends javax.swing.JFrame {
     Servers s = null;
     long t1, t2;
     DefaultCategoryDataset dataset;
+    CategoryPlot p;
     JFreeChart chart;
-    int S;
+    int S, tipusLlegenda;
     
     private void inici() {
         dataset = new DefaultCategoryDataset();
@@ -851,11 +873,11 @@ public class Launcher extends javax.swing.JFrame {
         chart = ChartFactory.createBarChart
         ("Ocupació dels servidors","", "ms", 
         dataset, PlotOrientation.VERTICAL, true,false, false);
-        //chart.setBackgroundPaint(Color.cyan);
-        //chart.getTitle().setPaint(Color.black); 
-        CategoryPlot p = chart.getCategoryPlot();
-        p.setRangeGridlinePaint(Color.red); 
-        // Mostrar Grafico
+        p = chart.getCategoryPlot();
+        p.getDomainAxis().setVisible(false);
+        BarRenderer barRenderer = (BarRenderer)p.getRenderer();
+        barRenderer.setShadowVisible(false);
+        barRenderer.setBarPainter(new StandardBarPainter());
         ChartPanel chartPanel = new ChartPanel(chart);
         jPanel7.add(chartPanel);
     }
@@ -870,7 +892,10 @@ public class Launcher extends javax.swing.JFrame {
                 ArrayList<Integer> ocup = efinal.getOcupacioServidor();
                 if (cbOrdenats.isSelected()) ocup.sort((Integer k1, Integer k2)->(k1 - k2));
                 for (int i = 0; i < S; ++i) {
-                    dataset.setValue(ocup.get(i), cbAproxInicial1.getSelectedItem()+"", ""+i);
+                    String lleg[] = {(String)cbAlgorisme1.getSelectedItem(), (String)cbAproxInicial1.getSelectedItem(),
+                            (String)cbHeuristica1.getSelectedItem(), "n="+spN1.getValue()+", k="+
+                            spK1.getValue()+" l="+spL1.getValue()};
+                    dataset.setValue(ocup.get(i), lleg[tipusLlegenda]+"", ""+(i+1));
                 }
             }
         }
@@ -881,7 +906,10 @@ public class Launcher extends javax.swing.JFrame {
                 ArrayList<Integer> ocup = efinal3.getOcupacioServidor();
             if (cbOrdenats.isSelected()) ocup.sort((Integer k1, Integer k2)->(k1 - k2));
                 for (int i = 0; i < S; ++i) {
-                    dataset.setValue(ocup.get(i), cbAproxInicial3.getSelectedItem()+" ", ""+i);
+                    String lleg[] = {(String)cbAlgorisme3.getSelectedItem(), (String)cbAproxInicial3.getSelectedItem(),
+                            (String)cbHeuristica3.getSelectedItem(), "n="+spN3.getValue()+", k="+
+                            spK3.getValue()+" l="+spL3.getValue()};
+                    dataset.setValue(ocup.get(i), lleg[tipusLlegenda]+" ", ""+(i+1));
                 }
             }
         }
@@ -891,7 +919,10 @@ public class Launcher extends javax.swing.JFrame {
                 ArrayList<Integer> ocup = efinal4.getOcupacioServidor();
             if (cbOrdenats.isSelected()) ocup.sort((Integer k1, Integer k2)->(k1 - k2));
                 for (int i = 0; i < S; ++i) {
-                    dataset.setValue(ocup.get(i), cbAproxInicial4.getSelectedItem()+"  ", ""+i);
+                    String lleg[] = {(String)cbAlgorisme4.getSelectedItem(), (String)cbAproxInicial4.getSelectedItem(),
+                            (String)cbHeuristica4.getSelectedItem(), "n="+spN4.getValue()+", k="+
+                            spK4.getValue()+" l="+spL4.getValue()};
+                    dataset.setValue(ocup.get(i), lleg[tipusLlegenda]+"  ", ""+(i+1));
                 }
             }
         }
@@ -1026,6 +1057,19 @@ public class Launcher extends javax.swing.JFrame {
     
     private void print(String s) {
         jTextArea1.setText(jTextArea1.getText()+s);
+    }
+    
+    private void boto_grafics() {
+        tipusLlegenda = JOptionPane.showOptionDialog(
+                this,
+                "Què vols mostrar a la llegenda?", 
+                "Llegenda",
+                JOptionPane.YES_NO_CANCEL_OPTION,
+                JOptionPane.QUESTION_MESSAGE,
+                null,    // null para icono por defecto.
+                new Object[] { "Algorisme", "Aprox inicial", "Heurístic", "SA parametres" },   // null para YES, NO y CANCEL
+                "Heurístic");
+        boto_comencar();
     }
     
     private void enablePanel(JPanel panel, boolean bool) {
