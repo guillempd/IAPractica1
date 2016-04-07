@@ -174,7 +174,7 @@
               <Properties>
                 <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
                   <StringArray count="3">
-                    <StringItem index="0" value="Random"/>
+                    <StringItem index="0" value="Aproximaci&#xf3; aleat&#xf2;ria"/>
                     <StringItem index="1" value="Aproximaci&#xf3; bona"/>
                     <StringItem index="2" value="Aproximaci&#xf3; dolenta"/>
                   </StringArray>
@@ -184,12 +184,15 @@
             <Component class="javax.swing.JComboBox" name="cbHeuristica1">
               <Properties>
                 <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
-                  <StringArray count="5">
+                  <StringArray count="8">
                     <StringItem index="0" value="MinMax"/>
                     <StringItem index="1" value="Suma"/>
                     <StringItem index="2" value="Suma de quadrats"/>
                     <StringItem index="3" value="Desviaci&#xf3; (|&#xb7;|)"/>
                     <StringItem index="4" value="Desviaci&#xf3; t&#xed;pica (^2)"/>
+                    <StringItem index="5" value="DesviacioSumaN"/>
+                    <StringItem index="6" value="DesviacioSuma2N"/>
+                    <StringItem index="7" value="DesviacioSuma3N"/>
                   </StringArray>
                 </Property>
               </Properties>
@@ -366,7 +369,7 @@
                   <Properties>
                     <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
                       <StringArray count="3">
-                        <StringItem index="0" value="Random"/>
+                        <StringItem index="0" value="Aproximaci&#xf3; aleat&#xf2;ria"/>
                         <StringItem index="1" value="Aproximaci&#xf3; bona"/>
                         <StringItem index="2" value="Aproximaci&#xf3; dolenta"/>
                       </StringArray>
@@ -376,12 +379,15 @@
                 <Component class="javax.swing.JComboBox" name="cbHeuristica3">
                   <Properties>
                     <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
-                      <StringArray count="5">
+                      <StringArray count="8">
                         <StringItem index="0" value="MinMax"/>
                         <StringItem index="1" value="Suma"/>
                         <StringItem index="2" value="Suma de quadrats"/>
                         <StringItem index="3" value="Desviaci&#xf3; (|&#xb7;|)"/>
                         <StringItem index="4" value="Desviaci&#xf3; t&#xed;pica (^2)"/>
+                        <StringItem index="5" value="DesviacioSumaN"/>
+                        <StringItem index="6" value="DesviacioSuma2N"/>
+                        <StringItem index="7" value="DesviacioSuma3N"/>
                       </StringArray>
                     </Property>
                   </Properties>
@@ -554,7 +560,7 @@
                   <Properties>
                     <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
                       <StringArray count="3">
-                        <StringItem index="0" value="Random"/>
+                        <StringItem index="0" value="Aproximaci&#xf3; aleat&#xf2;ria"/>
                         <StringItem index="1" value="Aproximaci&#xf3; bona"/>
                         <StringItem index="2" value="Aproximaci&#xf3; dolenta"/>
                       </StringArray>
@@ -564,12 +570,15 @@
                 <Component class="javax.swing.JComboBox" name="cbHeuristica4">
                   <Properties>
                     <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
-                      <StringArray count="5">
+                      <StringArray count="8">
                         <StringItem index="0" value="MinMax"/>
                         <StringItem index="1" value="Suma"/>
                         <StringItem index="2" value="Suma de quadrats"/>
                         <StringItem index="3" value="Desviaci&#xf3; (|&#xb7;|)"/>
                         <StringItem index="4" value="Desviaci&#xf3; t&#xed;pica (^2)"/>
+                        <StringItem index="5" value="DesviacioSumaN"/>
+                        <StringItem index="6" value="DesviacioSuma2N"/>
+                        <StringItem index="7" value="DesviacioSuma3N"/>
                       </StringArray>
                     </Property>
                   </Properties>
@@ -869,7 +878,7 @@
               <Group type="102" attributes="0">
                   <EmptySpace max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="0" attributes="0">
-                      <Component id="jTabbedPane1" max="32767" attributes="0"/>
+                      <Component id="jTabbedPane1" pref="588" max="32767" attributes="0"/>
                       <Group type="102" alignment="1" attributes="0">
                           <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
                           <Component id="bHide" min="-2" max="-2" attributes="0"/>
@@ -883,7 +892,7 @@
           <Group type="103" groupAlignment="0" attributes="0">
               <Group type="102" alignment="0" attributes="0">
                   <EmptySpace min="-2" max="-2" attributes="0"/>
-                  <Component id="jTabbedPane1" max="32767" attributes="0"/>
+                  <Component id="jTabbedPane1" pref="442" max="32767" attributes="0"/>
                   <EmptySpace min="-2" max="-2" attributes="0"/>
                   <Component id="bHide" min="-2" max="-2" attributes="0"/>
                   <EmptySpace min="-2" max="-2" attributes="0"/>
@@ -917,7 +926,7 @@
                   <Group type="103" groupAlignment="0" attributes="0">
                       <Group type="102" alignment="0" attributes="0">
                           <EmptySpace max="-2" attributes="0"/>
-                          <Component id="jScrollPane1" pref="466" max="32767" attributes="0"/>
+                          <Component id="jScrollPane1" pref="551" max="32767" attributes="0"/>
                           <EmptySpace max="-2" attributes="0"/>
                       </Group>
                   </Group>
@@ -926,7 +935,7 @@
                   <Group type="103" groupAlignment="0" attributes="0">
                       <Group type="102" alignment="0" attributes="0">
                           <EmptySpace max="-2" attributes="0"/>
-                          <Component id="jScrollPane1" pref="354" max="32767" attributes="0"/>
+                          <Component id="jScrollPane1" pref="369" max="32767" attributes="0"/>
                           <EmptySpace max="-2" attributes="0"/>
                       </Group>
                   </Group>
@@ -947,7 +956,7 @@
                         <Property name="rows" type="int" value="5"/>
                         <Property name="toolTipText" type="java.lang.String" value=""/>
                         <Property name="cursor" type="java.awt.Cursor" editor="org.netbeans.modules.form.editors2.CursorEditor">
-                          <Color id="Default Cursor"/>
+                          <Color id="Cursor Por defecto"/>
                         </Property>
                       </Properties>
                     </Component>

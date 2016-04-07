@@ -12,6 +12,9 @@ import Practica1.Successors.SuccessorsHillClimbing;
 import IA.DistFS.Requests;
 import IA.DistFS.Servers;
 import Practica1.Heuristics.Desviacio;
+import Practica1.Heuristics.DesviacioSuma2N;
+import Practica1.Heuristics.DesviacioSuma3N;
+import Practica1.Heuristics.DesviacioSumaN;
 import Practica1.Heuristics.DesviacioTipica;
 import Practica1.Successors.SuccessorsSimulatedAnnealing;
 import aima.search.framework.GoalTest;
@@ -153,9 +156,9 @@ public class Launcher extends javax.swing.JFrame {
 
         jPanel3.setBorder(javax.swing.BorderFactory.createTitledBorder("Resolució 1"));
 
-        cbAproxInicial1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Random", "Aproximació bona", "Aproximació dolenta" }));
+        cbAproxInicial1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Aproximació aleatòria", "Aproximació bona", "Aproximació dolenta" }));
 
-        cbHeuristica1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "MinMax", "Suma", "Suma de quadrats", "Desviació (|·|)", "Desviació típica (^2)" }));
+        cbHeuristica1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "MinMax", "Suma", "Suma de quadrats", "Desviació (|·|)", "Desviació típica (^2)", "DesviacioSumaN", "DesviacioSuma2N", "DesviacioSuma3N" }));
 
         jLabel10.setText("Heuristica");
 
@@ -251,9 +254,9 @@ public class Launcher extends javax.swing.JFrame {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
-        cbAproxInicial3.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Random", "Aproximació bona", "Aproximació dolenta" }));
+        cbAproxInicial3.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Aproximació aleatòria", "Aproximació bona", "Aproximació dolenta" }));
 
-        cbHeuristica3.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "MinMax", "Suma", "Suma de quadrats", "Desviació (|·|)", "Desviació típica (^2)" }));
+        cbHeuristica3.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "MinMax", "Suma", "Suma de quadrats", "Desviació (|·|)", "Desviació típica (^2)", "DesviacioSumaN", "DesviacioSuma2N", "DesviacioSuma3N" }));
 
         jLabel18.setText("Heuristica");
 
@@ -352,9 +355,9 @@ public class Launcher extends javax.swing.JFrame {
 
         jTabbedPane2.addTab("Resolució 2", jPanel9);
 
-        cbAproxInicial4.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Random", "Aproximació bona", "Aproximació dolenta" }));
+        cbAproxInicial4.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Aproximació aleatòria", "Aproximació bona", "Aproximació dolenta" }));
 
-        cbHeuristica4.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "MinMax", "Suma", "Suma de quadrats", "Desviació (|·|)", "Desviació típica (^2)" }));
+        cbHeuristica4.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "MinMax", "Suma", "Suma de quadrats", "Desviació (|·|)", "Desviació típica (^2)", "DesviacioSumaN", "DesviacioSuma2N", "DesviacioSuma3N" }));
 
         jLabel24.setText("Heuristica");
 
@@ -606,14 +609,14 @@ public class Launcher extends javax.swing.JFrame {
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel4Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 466, Short.MAX_VALUE)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 551, Short.MAX_VALUE)
                 .addContainerGap())
         );
         jPanel4Layout.setVerticalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel4Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 354, Short.MAX_VALUE)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 369, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
@@ -636,7 +639,7 @@ public class Launcher extends javax.swing.JFrame {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jTabbedPane1)
+                    .addComponent(jTabbedPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 588, Short.MAX_VALUE)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                         .addGap(0, 0, Short.MAX_VALUE)
                         .addComponent(bHide)))
@@ -646,7 +649,7 @@ public class Launcher extends javax.swing.JFrame {
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jTabbedPane1)
+                .addComponent(jTabbedPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 442, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(bHide)
                 .addContainerGap())
@@ -757,18 +760,15 @@ public class Launcher extends javax.swing.JFrame {
     private javax.swing.ButtonGroup buttonGroup2;
     private javax.swing.ButtonGroup buttonGroup3;
     private javax.swing.JComboBox cbAlgorisme1;
-    private javax.swing.JComboBox cbAlgorisme2;
     private javax.swing.JComboBox cbAlgorisme3;
     private javax.swing.JComboBox cbAlgorisme4;
     private javax.swing.JComboBox cbAproxInicial1;
-    private javax.swing.JComboBox cbAproxInicial2;
     private javax.swing.JComboBox cbAproxInicial3;
     private javax.swing.JComboBox cbAproxInicial4;
     private javax.swing.JCheckBox cbGrafics1;
     private javax.swing.JCheckBox cbGrafics3;
     private javax.swing.JCheckBox cbGrafics4;
     private javax.swing.JComboBox cbHeuristica1;
-    private javax.swing.JComboBox cbHeuristica2;
     private javax.swing.JComboBox cbHeuristica3;
     private javax.swing.JComboBox cbHeuristica4;
     private javax.swing.JCheckBox cbOrdenats;
@@ -778,12 +778,6 @@ public class Launcher extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
-    private javax.swing.JLabel jLabel12;
-    private javax.swing.JLabel jLabel13;
-    private javax.swing.JLabel jLabel14;
-    private javax.swing.JLabel jLabel15;
-    private javax.swing.JLabel jLabel16;
-    private javax.swing.JLabel jLabel17;
     private javax.swing.JLabel jLabel18;
     private javax.swing.JLabel jLabel19;
     private javax.swing.JLabel jLabel2;
@@ -811,22 +805,17 @@ public class Launcher extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel5;
     private javax.swing.JPanel jPanel6;
     private javax.swing.JPanel jPanel7;
-    private javax.swing.JPanel jPanel8;
     private javax.swing.JPanel jPanel9;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JSpinner jSpinner1;
-    private javax.swing.JSpinner jSpinner10;
-    private javax.swing.JSpinner jSpinner11;
     private javax.swing.JSpinner jSpinner2;
     private javax.swing.JSpinner jSpinner3;
     private javax.swing.JSpinner jSpinner4;
     private javax.swing.JSpinner jSpinner5;
-    private javax.swing.JSpinner jSpinner9;
     private javax.swing.JTabbedPane jTabbedPane1;
     private javax.swing.JTabbedPane jTabbedPane2;
     private javax.swing.JTextArea jTextArea1;
     private javax.swing.JPanel pSimAnPar1;
-    private javax.swing.JPanel pSimAnPar2;
     private javax.swing.JPanel pSimAnPar3;
     private javax.swing.JPanel pSimAnPar4;
     private javax.swing.JSpinner spK1;
@@ -858,12 +847,13 @@ public class Launcher extends javax.swing.JFrame {
         enablePanel(pSimAnPar3,false);
         enablePanel(pSimAnPar4,false);
         // Creando el Grafico
+        
         chart = ChartFactory.createBarChart
         ("Ocupació dels servidors","", "ms", 
         dataset, PlotOrientation.VERTICAL, true,false, false);
         //chart.setBackgroundPaint(Color.cyan);
         //chart.getTitle().setPaint(Color.black); 
-        CategoryPlot p = chart.getCategoryPlot(); 
+        CategoryPlot p = chart.getCategoryPlot();
         p.setRangeGridlinePaint(Color.red); 
         // Mostrar Grafico
         ChartPanel chartPanel = new ChartPanel(chart);
@@ -880,7 +870,7 @@ public class Launcher extends javax.swing.JFrame {
                 ArrayList<Integer> ocup = efinal.getOcupacioServidor();
                 if (cbOrdenats.isSelected()) ocup.sort((Integer k1, Integer k2)->(k1 - k2));
                 for (int i = 0; i < S; ++i) {
-                    dataset.setValue(ocup.get(i), cbAlgorisme1.getSelectedItem()+" 1", ""+i);
+                    dataset.setValue(ocup.get(i), cbAproxInicial1.getSelectedItem()+"", ""+i);
                 }
             }
         }
@@ -891,7 +881,7 @@ public class Launcher extends javax.swing.JFrame {
                 ArrayList<Integer> ocup = efinal3.getOcupacioServidor();
             if (cbOrdenats.isSelected()) ocup.sort((Integer k1, Integer k2)->(k1 - k2));
                 for (int i = 0; i < S; ++i) {
-                    dataset.setValue(ocup.get(i), cbAlgorisme3.getSelectedItem()+" 2", ""+i);
+                    dataset.setValue(ocup.get(i), cbAproxInicial3.getSelectedItem()+" ", ""+i);
                 }
             }
         }
@@ -901,7 +891,7 @@ public class Launcher extends javax.swing.JFrame {
                 ArrayList<Integer> ocup = efinal4.getOcupacioServidor();
             if (cbOrdenats.isSelected()) ocup.sort((Integer k1, Integer k2)->(k1 - k2));
                 for (int i = 0; i < S; ++i) {
-                    dataset.setValue(ocup.get(i), cbAlgorisme4.getSelectedItem()+" 3", ""+i);
+                    dataset.setValue(ocup.get(i), cbAproxInicial4.getSelectedItem()+"  ", ""+i);
                 }
             }
         }
@@ -920,17 +910,21 @@ public class Launcher extends javax.swing.JFrame {
         }
         print("\nEXPERIMENT " + num + "\n----------------\n");
         print("Algorisme: " + cbAlgorisme.getSelectedItem()+"\n");
-        if (cbAproxInicial.getSelectedItem().equals("Random")) gen = Generacio.RANDOM;
+        if (cbAproxInicial.getSelectedItem().equals("Aproximació aleatòria")) gen = Generacio.RANDOM;
         else if (cbAproxInicial.getSelectedItem().equals("Aproximació bona")) gen = Generacio.PROPER;
         else gen = Generacio.LLUNYA;
         print("Generació de l'estat inicial: " + gen.toString() + "\n");
 
+        
         switch(cbHeuristica.getSelectedIndex()) {
             case 0: {heuristicFunction = new MinMax(); break;}
             case 1: {heuristicFunction = new Suma(); break;}
             case 2: {heuristicFunction = new SumaQuadrats(); break;}
             case 3: {heuristicFunction = new Desviacio(); break;}
             case 4: {heuristicFunction = new DesviacioTipica(); break;}
+            case 5: {heuristicFunction = new DesviacioSumaN(); break;}
+            case 6: {heuristicFunction = new DesviacioSuma2N(); break;}
+            case 7: {heuristicFunction = new DesviacioSuma3N(); break;}
             default: break;
         }
         print("Funció heurística: " + heuristicFunction.getClass().getName() + "\n");
