@@ -466,6 +466,7 @@ public class Launcher extends javax.swing.JFrame {
         jLabel1.setText("Users");
 
         jSpinner1.setModel(new javax.swing.SpinnerNumberModel(Integer.valueOf(20), null, null, Integer.valueOf(1)));
+        jSpinner1.setValue(200);
 
         jLabel2.setText("Max req");
 
@@ -476,6 +477,7 @@ public class Launcher extends javax.swing.JFrame {
         jLabel4.setText("Min repl");
 
         jSpinner3.setModel(new javax.swing.SpinnerNumberModel(Integer.valueOf(10), null, null, Integer.valueOf(1)));
+        jSpinner3.setValue(50);
 
         jSpinner4.setModel(new javax.swing.SpinnerNumberModel(Integer.valueOf(5), null, null, Integer.valueOf(1)));
 
