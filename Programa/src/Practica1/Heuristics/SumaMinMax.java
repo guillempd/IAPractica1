@@ -12,14 +12,15 @@ import aima.search.framework.HeuristicFunction;
  *
  * @author guillem.perez.delgado
  */
-public class DesviacioSuma2N implements HeuristicFunction {
+public class SumaMinMax implements HeuristicFunction {
     
     public double getHeuristicValue(Object n) {
         Estat e = (Estat)n;
         HeuristicFunction h1 = new Suma();
-        HeuristicFunction h2 = new DesviacioTipica();
+        HeuristicFunction h2 = new MinMax();
         int S = e.serversSize();
-        return h1.getHeuristicValue(e) + 2*S*Math.sqrt(h2.getHeuristicValue(e));
+        return h1.getHeuristicValue(e) + S*h2.getHeuristicValue(e);
     }
     
 }
+

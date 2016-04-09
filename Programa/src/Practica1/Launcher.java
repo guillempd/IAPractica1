@@ -12,8 +12,7 @@ import Practica1.Successors.SuccessorsHillClimbing;
 import IA.DistFS.Requests;
 import IA.DistFS.Servers;
 import Practica1.Heuristics.Desviacio;
-import Practica1.Heuristics.DesviacioSuma2N;
-import Practica1.Heuristics.DesviacioSuma3N;
+import Practica1.Heuristics.SumaMinMax;
 import Practica1.Heuristics.DesviacioSumaN;
 import Practica1.Heuristics.DesviacioTipica;
 import Practica1.Successors.SuccessorsSimulatedAnnealing;
@@ -40,6 +39,7 @@ import java.util.logging.Logger;
 import javax.swing.JComboBox;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
+import javax.swing.JSpinner;
 import org.jfree.chart.ChartFactory;
 import org.jfree.chart.ChartPanel;
 import org.jfree.chart.ChartUtilities;
@@ -163,7 +163,7 @@ public class Launcher extends javax.swing.JFrame {
 
         cbAproxInicial1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Aproximació aleatòria", "Aproximació bona", "Aproximació dolenta" }));
 
-        cbHeuristica1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "MinMax", "Suma", "Suma de quadrats", "Desviació (|·|)", "Desviació típica (^2)", "DesviacioSumaN", "DesviacioSuma2N", "DesviacioSuma3N" }));
+        cbHeuristica1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "MinMax", "Suma", "Suma de quadrats", "Desviació", "Variança", "DesviacioSuma", "SumaMinMax" }));
 
         jLabel10.setText("Heuristica");
 
@@ -261,7 +261,7 @@ public class Launcher extends javax.swing.JFrame {
 
         cbAproxInicial3.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Aproximació aleatòria", "Aproximació bona", "Aproximació dolenta" }));
 
-        cbHeuristica3.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "MinMax", "Suma", "Suma de quadrats", "Desviació (|·|)", "Desviació típica (^2)", "DesviacioSumaN", "DesviacioSuma2N", "DesviacioSuma3N" }));
+        cbHeuristica3.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "MinMax", "Suma", "Suma de quadrats", "Desviació", "Variança", "DesviacioSuma", "SumaMinMax" }));
 
         jLabel18.setText("Heuristica");
 
@@ -362,7 +362,7 @@ public class Launcher extends javax.swing.JFrame {
 
         cbAproxInicial4.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Aproximació aleatòria", "Aproximació bona", "Aproximació dolenta" }));
 
-        cbHeuristica4.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "MinMax", "Suma", "Suma de quadrats", "Desviació (|·|)", "Desviació típica (^2)", "DesviacioSumaN", "DesviacioSuma2N", "DesviacioSuma3N" }));
+        cbHeuristica4.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "MinMax", "Suma", "Suma de quadrats", "Desviació", "Variança", "DesviacioSuma", "SumaMinMax" }));
 
         jLabel24.setText("Heuristica");
 
@@ -864,6 +864,7 @@ public class Launcher extends javax.swing.JFrame {
     CategoryPlot p;
     JFreeChart chart;
     int S, tipusLlegenda;
+    JSpinner spK, spN, spL;
     
     private void inici() {
         dataset = new DefaultCategoryDataset();
@@ -887,10 +888,11 @@ public class Launcher extends javax.swing.JFrame {
     private void boto_comencar() {
         jTextArea1.setText("");
         Estat efinal, efinal3, efinal4;
+        dataset.clear();
+        if (tipusLlegenda == -1) tipusLlegenda = 0;
         if (cbGrafics1.isSelected()) {
             efinal = comencar(1);
             if (efinal != null) {
-                dataset.clear();
                 ArrayList<Integer> ocup = efinal.getOcupacioServidor();
                 if (cbOrdenats.isSelected()) ocup.sort((Integer k1, Integer k2)->(k1 - k2));
                 for (int i = 0; i < S; ++i) {
@@ -906,7 +908,7 @@ public class Launcher extends javax.swing.JFrame {
             efinal3 = comencar(2);
             if (efinal3 != null) {
                 ArrayList<Integer> ocup = efinal3.getOcupacioServidor();
-            if (cbOrdenats.isSelected()) ocup.sort((Integer k1, Integer k2)->(k1 - k2));
+                if (cbOrdenats.isSelected()) ocup.sort((Integer k1, Integer k2)->(k1 - k2));
                 for (int i = 0; i < S; ++i) {
                     String lleg[] = {(String)cbAlgorisme3.getSelectedItem(), (String)cbAproxInicial3.getSelectedItem(),
                             (String)cbHeuristica3.getSelectedItem(), "n="+spN3.getValue()+", k="+
@@ -919,7 +921,7 @@ public class Launcher extends javax.swing.JFrame {
             efinal4 = comencar(3);
             if (efinal4 != null) {
                 ArrayList<Integer> ocup = efinal4.getOcupacioServidor();
-            if (cbOrdenats.isSelected()) ocup.sort((Integer k1, Integer k2)->(k1 - k2));
+                if (cbOrdenats.isSelected()) ocup.sort((Integer k1, Integer k2)->(k1 - k2));
                 for (int i = 0; i < S; ++i) {
                     String lleg[] = {(String)cbAlgorisme4.getSelectedItem(), (String)cbAproxInicial4.getSelectedItem(),
                             (String)cbHeuristica4.getSelectedItem(), "n="+spN4.getValue()+", k="+
@@ -934,12 +936,15 @@ public class Launcher extends javax.swing.JFrame {
         JComboBox cbAlgorisme, cbAproxInicial, cbHeuristica;
         if (num == 1) {
             cbAlgorisme = cbAlgorisme1; cbAproxInicial = cbAproxInicial1; cbHeuristica = cbHeuristica1;
+            spK = spK1; spN = spN1; spL = spL1;
         }
         else if (num == 2) {
             cbAlgorisme = cbAlgorisme3; cbAproxInicial = cbAproxInicial3; cbHeuristica = cbHeuristica3;
+            spK = spK3; spN = spN3; spL = spL3;
         }
         else {
             cbAlgorisme = cbAlgorisme4; cbAproxInicial = cbAproxInicial4; cbHeuristica = cbHeuristica4;
+            spK = spK4; spN = spN4; spL = spL4;
         }
         print("\nEXPERIMENT " + num + "\n----------------\n");
         print("Algorisme: " + cbAlgorisme.getSelectedItem()+"\n");
@@ -956,8 +961,7 @@ public class Launcher extends javax.swing.JFrame {
             case 3: {heuristicFunction = new Desviacio(); break;}
             case 4: {heuristicFunction = new DesviacioTipica(); break;}
             case 5: {heuristicFunction = new DesviacioSumaN(); break;}
-            case 6: {heuristicFunction = new DesviacioSuma2N(); break;}
-            case 7: {heuristicFunction = new DesviacioSuma3N(); break;}
+            case 6: {heuristicFunction = new SumaMinMax(); break;}
             default: break;
         }
         print("Funció heurística: " + heuristicFunction.getClass().getName() + "\n");
@@ -980,7 +984,7 @@ public class Launcher extends javax.swing.JFrame {
         print("Heuristic inicial = " + heuristicFunction.getHeuristicValue(estatInicial) + "\n");
         
         Estat efinal;
-        if (cbAlgorisme1.getSelectedItem().equals("Hill Climbing")) efinal = hillClimbing();
+        if (cbAlgorisme.getSelectedItem().equals("Hill Climbing")) efinal = hillClimbing();
         else efinal = simulatedAnnealing();
         return efinal;
     }
@@ -1011,7 +1015,8 @@ public class Launcher extends javax.swing.JFrame {
             
             Problem problem =  new Problem(estatInicial, successorFunction, gt, heuristicFunction);
             //Parametres: n iter, iter/ pas de temperatura, k, lambda
-            Search search =  new SimulatedAnnealingSearch(10000,1,10,0.1);
+            Search search =  new SimulatedAnnealingSearch(
+                    (Integer) spN.getValue(),1,(Integer) spK.getValue(),(Float)spL.getValue());
             SearchAgent agent = new SearchAgent(problem,search);
             t2 = System.currentTimeMillis();
             
@@ -1071,7 +1076,7 @@ public class Launcher extends javax.swing.JFrame {
                 null,    // null para icono por defecto.
                 new Object[] { "Algorisme", "Aprox inicial", "Heurístic", "SA parametres" },   // null para YES, NO y CANCEL
                 "Heurístic");
-        boto_comencar();
+        if (tipusLlegenda != -1) boto_comencar();
     }
     
     private void enablePanel(JPanel panel, boolean bool) {
