@@ -998,7 +998,7 @@ public class Launcher extends javax.swing.JFrame {
             SearchAgent agent = new SearchAgent(problem,search);
             t2 = System.currentTimeMillis();
             
-            printActionsHC(agent.getActions());
+            //printActionsHC(agent.getActions());
             printInstrumentation(agent.getInstrumentation());
             cosesFinals((Estat)search.getGoalState());
             return (Estat) search.getGoalState();
@@ -1020,7 +1020,7 @@ public class Launcher extends javax.swing.JFrame {
             SearchAgent agent = new SearchAgent(problem,search);
             t2 = System.currentTimeMillis();
             
-            printActionsSA(search.getPathStates());
+            //printActionsSA(search.getPathStates());
             printInstrumentation(agent.getInstrumentation());
             cosesFinals((Estat)search.getGoalState());
             return (Estat) search.getGoalState();
