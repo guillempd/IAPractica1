@@ -19,7 +19,7 @@ public class SumaMinMax implements HeuristicFunction {
         HeuristicFunction h1 = new Suma();
         HeuristicFunction h2 = new MinMax();
         int S = e.serversSize();
-        return h1.getHeuristicValue(e) + S*h2.getHeuristicValue(e);
+        return h1.getHeuristicValue(e) + S*S*h2.getHeuristicValue(e);
     }
     
 }

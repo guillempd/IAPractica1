@@ -12,6 +12,7 @@ import Practica1.Successors.SuccessorsHillClimbing;
 import IA.DistFS.Requests;
 import IA.DistFS.Servers;
 import Practica1.Heuristics.Desviacio;
+import Practica1.Heuristics.DesviacioSuma1n;
 import Practica1.Heuristics.SumaMinMax;
 import Practica1.Heuristics.DesviacioSumaN;
 import Practica1.Heuristics.DesviacioTipica;
@@ -163,7 +164,7 @@ public class Launcher extends javax.swing.JFrame {
 
         cbAproxInicial1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Aproximació aleatòria", "Aproximació bona", "Aproximació dolenta" }));
 
-        cbHeuristica1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "MinMax", "Suma", "Suma de quadrats", "Desviació", "Variança", "DesviacioSuma", "SumaMinMax" }));
+        cbHeuristica1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "MinMax", "Suma", "Suma de quadrats", "Desviació", "Variança", "DesviacioSuma", "SumaMinMax", "DesviacioSuma1n" }));
 
         jLabel10.setText("Heuristica");
 
@@ -261,7 +262,7 @@ public class Launcher extends javax.swing.JFrame {
 
         cbAproxInicial3.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Aproximació aleatòria", "Aproximació bona", "Aproximació dolenta" }));
 
-        cbHeuristica3.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "MinMax", "Suma", "Suma de quadrats", "Desviació", "Variança", "DesviacioSuma", "SumaMinMax" }));
+        cbHeuristica3.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "MinMax", "Suma", "Suma de quadrats", "Desviació", "Variança", "DesviacioSuma", "SumaMinMax", "DesviacioSuma1n" }));
 
         jLabel18.setText("Heuristica");
 
@@ -362,7 +363,7 @@ public class Launcher extends javax.swing.JFrame {
 
         cbAproxInicial4.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Aproximació aleatòria", "Aproximació bona", "Aproximació dolenta" }));
 
-        cbHeuristica4.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "MinMax", "Suma", "Suma de quadrats", "Desviació", "Variança", "DesviacioSuma", "SumaMinMax" }));
+        cbHeuristica4.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "MinMax", "Suma", "Suma de quadrats", "Desviació", "Variança", "DesviacioSuma", "SumaMinMax", "DesviacioSuma1n" }));
 
         jLabel24.setText("Heuristica");
 
@@ -962,6 +963,7 @@ public class Launcher extends javax.swing.JFrame {
             case 4: {heuristicFunction = new DesviacioTipica(); break;}
             case 5: {heuristicFunction = new DesviacioSumaN(); break;}
             case 6: {heuristicFunction = new SumaMinMax(); break;}
+            case 7: {heuristicFunction = new DesviacioSuma1n(); break;}
             default: break;
         }
         print("Funció heurística: " + heuristicFunction.getClass().getName() + "\n");
