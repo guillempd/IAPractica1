@@ -12,9 +12,9 @@ import Practica1.Successors.SuccessorsHillClimbing;
 import IA.DistFS.Requests;
 import IA.DistFS.Servers;
 import Practica1.Heuristics.Desviacio;
-import Practica1.Heuristics.DesviacioSuma1n;
+import Practica1.Heuristics.DesviacioCSuma;
 import Practica1.Heuristics.SumaMinMax;
-import Practica1.Heuristics.DesviacioSumaN;
+import Practica1.Heuristics.DesviacioSuma;
 import Practica1.Heuristics.DesviacioTipica;
 import Practica1.Successors.SuccessorsSimulatedAnnealing;
 import aima.search.framework.GoalTest;
@@ -162,9 +162,9 @@ public class Launcher extends javax.swing.JFrame {
 
         jPanel3.setBorder(javax.swing.BorderFactory.createTitledBorder("Resolució 1"));
 
-        cbAproxInicial1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Aproximació aleatòria", "Aproximació bona", "Aproximació dolenta" }));
+        cbAproxInicial1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Aproximació aleatòria", "Aproximació propera", "Aproximació llunyana" }));
 
-        cbHeuristica1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "MinMax", "Suma", "Suma de quadrats", "Desviació", "Variança", "DesviacioSuma", "SumaMinMax", "DesviacioSuma1n" }));
+        cbHeuristica1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Màxim", "Suma", "Suma de quadrats", "Variància", "Desviació + Suma", "Desviació*C + Suma" }));
 
         jLabel10.setText("Heuristica");
 
@@ -260,9 +260,9 @@ public class Launcher extends javax.swing.JFrame {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
-        cbAproxInicial3.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Aproximació aleatòria", "Aproximació bona", "Aproximació dolenta" }));
+        cbAproxInicial3.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Aproximació aleatòria", "Aproximació propera", "Aproximació llunyana" }));
 
-        cbHeuristica3.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "MinMax", "Suma", "Suma de quadrats", "Desviació", "Variança", "DesviacioSuma", "SumaMinMax", "DesviacioSuma1n" }));
+        cbHeuristica3.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Màxim", "Suma", "Suma de quadrats", "Variància", "Desviació + Suma", "Desviació*C + Suma" }));
 
         jLabel18.setText("Heuristica");
 
@@ -361,9 +361,9 @@ public class Launcher extends javax.swing.JFrame {
 
         jTabbedPane2.addTab("Resolució 2", jPanel9);
 
-        cbAproxInicial4.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Aproximació aleatòria", "Aproximació bona", "Aproximació dolenta" }));
+        cbAproxInicial4.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Aproximació aleatòria", "Aproximació propera", "Aproximació llunyana" }));
 
-        cbHeuristica4.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "MinMax", "Suma", "Suma de quadrats", "Desviació", "Variança", "DesviacioSuma", "SumaMinMax", "DesviacioSuma1n" }));
+        cbHeuristica4.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Màxim", "Suma", "Suma de quadrats", "Variància", "Desviació + Suma", "Desviació*C + Suma" }));
 
         jLabel24.setText("Heuristica");
 
@@ -950,7 +950,7 @@ public class Launcher extends javax.swing.JFrame {
         print("\nEXPERIMENT " + num + "\n----------------\n");
         print("Algorisme: " + cbAlgorisme.getSelectedItem()+"\n");
         if (cbAproxInicial.getSelectedItem().equals("Aproximació aleatòria")) gen = Generacio.RANDOM;
-        else if (cbAproxInicial.getSelectedItem().equals("Aproximació bona")) gen = Generacio.PROPER;
+        else if (cbAproxInicial.getSelectedItem().equals("Aproximació propera")) gen = Generacio.PROPER;
         else gen = Generacio.LLUNYA;
         print("Generació de l'estat inicial: " + gen.toString() + "\n");
 
@@ -959,11 +959,9 @@ public class Launcher extends javax.swing.JFrame {
             case 0: {heuristicFunction = new MinMax(); break;}
             case 1: {heuristicFunction = new Suma(); break;}
             case 2: {heuristicFunction = new SumaQuadrats(); break;}
-            case 3: {heuristicFunction = new Desviacio(); break;}
-            case 4: {heuristicFunction = new DesviacioTipica(); break;}
-            case 5: {heuristicFunction = new DesviacioSumaN(); break;}
-            case 6: {heuristicFunction = new SumaMinMax(); break;}
-            case 7: {heuristicFunction = new DesviacioSuma1n(); break;}
+            case 3: {heuristicFunction = new DesviacioTipica(); break;}
+            case 4: {heuristicFunction = new DesviacioSuma(); break;}
+            case 5: {heuristicFunction = new DesviacioCSuma(); break;}
             default: break;
         }
         print("Funció heurística: " + heuristicFunction.getClass().getName() + "\n");

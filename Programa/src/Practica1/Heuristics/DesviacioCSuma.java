@@ -12,14 +12,14 @@ import aima.search.framework.HeuristicFunction;
  *
  * @author guillem.perez.delgado
  */
-public class DesviacioSumaN implements HeuristicFunction {
+public class DesviacioCSuma implements HeuristicFunction {
     
     public double getHeuristicValue(Object n) {
         Estat e = (Estat)n;
         HeuristicFunction h1 = new Suma();
         HeuristicFunction h2 = new DesviacioTipica();
         int S = e.serversSize();
-        return h1.getHeuristicValue(e) + S*Math.sqrt(h2.getHeuristicValue(e));
+        return h1.getHeuristicValue(e) + S*Math.sqrt(h2.getHeuristicValue(e) / 500);
     }
     
 }
